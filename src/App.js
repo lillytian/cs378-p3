@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+
+import { Col, Container, Row } from "react-bootstrap";
+import CityButton from "./components/CityButton";
+import TemperatureTable from "./components/TemperatureTable";
 
 function App() {
+  const [cities, setCities] = useState(["Austin", "Dallas", "Houston"]);
+  const [selectedCity, setSelectedCity] = useState(cities[0]);
+
+  const renderCityButtons = () => {
+    return cities.map((item) => {
+      return (
+        <Col key={item} xs={4}>
+          <CityButton
+            onClick={() => {
+              setSelectedCity(item);
+            }}
+            selected={selectedCity === item}
+            title={item}
+          />
+        </Col>
+      );
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Container fluid>
+        <Row xs={12}>{renderCityButtons()}</Row>
+        <Row>
+          <Col xs={5}>
+            <input type="text" />
+          </Col>
+          <Col xs={1}>
+            <button>+</button>
+          </Col>
+        </Row>
+        <Row>
+          <TemperatureTable city={selectedCity} />
+        </Row>
+      </Container>
     </div>
   );
 }
