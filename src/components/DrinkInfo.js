@@ -40,7 +40,7 @@ function DrinkInfo(props) {
           name: curr["strDrink"],
           glass: curr["strGlass"],
           instructions: curr["strInstructions"],
-          img: `${curr["strDrinkThumb"]}\/preview`,
+          img: `${curr["strDrinkThumb"]}/preview`,
           ingredients: formatIngredients(curr),
         };
 
@@ -58,7 +58,7 @@ function DrinkInfo(props) {
     <div className="drink-info-con">
       <Row>
         <Col>
-          <img src={info.img} className="info-img" />
+          <img alt={`${info.name}`} src={info.img} className="info-img" />
         </Col>
       </Row>
       <Row>

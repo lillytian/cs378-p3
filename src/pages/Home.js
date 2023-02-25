@@ -1,12 +1,5 @@
-import { useEffect, useState } from "react";
-import {
-  Button,
-  Col,
-  Container,
-  Dropdown,
-  DropdownButton,
-  Row,
-} from "react-bootstrap";
+import { useState } from "react";
+import { Button, Col, Container, Dropdown, Row } from "react-bootstrap";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
@@ -99,7 +92,7 @@ function Home() {
           <Button
             onClick={addDrink}
             className="search-add"
-            disabled={drinkSearch == null || drinkSearch.length == 0}
+            disabled={drinkSearch == null || drinkSearch.length === 0}
           >
             +
           </Button>
