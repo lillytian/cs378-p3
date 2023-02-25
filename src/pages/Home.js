@@ -27,7 +27,11 @@ function Home() {
           }}
           key={item.name}
         >
-          <DropdownItem>{item.name}</DropdownItem>
+          <DropdownItem
+            style={{ wordWrap: "break-word", whiteSpace: "normal" }}
+          >
+            {item.name}
+          </DropdownItem>
         </span>
       );
     });
