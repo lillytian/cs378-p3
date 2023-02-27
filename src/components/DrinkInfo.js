@@ -32,7 +32,6 @@ function DrinkInfo(props) {
     fetch(baseURL)
       .then((res) => res.json())
       .then((data) => {
-        console.log(id);
         const curr = data["drinks"][0];
 
         const currInfo = {
@@ -42,6 +41,8 @@ function DrinkInfo(props) {
           instructions: curr["strInstructions"],
           img: `${curr["strDrinkThumb"]}/preview`,
           ingredients: formatIngredients(curr),
+          category: curr["strCategory"],
+          iba: curr["strIBA"],
         };
 
         setInfo(currInfo);
@@ -51,8 +52,6 @@ function DrinkInfo(props) {
   if (info == null) {
     return null;
   }
-
-  console.log("rendered");
 
   return (
     <div className="drink-info-con">
@@ -101,6 +100,30 @@ function DrinkInfo(props) {
           </Row>
           <Row>
             <Col>{info.glass}</Col>
+          </Row>
+        </Col>
+      </Row>
+      <Row className="info-block">
+        <Col>
+          <Row>
+            <Col>
+              <h3>Category</h3>
+            </Col>
+          </Row>
+          <Row>
+            <Col>{info.category ?? "None"}</Col>
+          </Row>
+        </Col>
+      </Row>
+      <Row className="info-block">
+        <Col>
+          <Row>
+            <Col>
+              <h3>IBA Official Cocktail List</h3>
+            </Col>
+          </Row>
+          <Row>
+            <Col>{info.iba ?? "None"}</Col>
           </Row>
         </Col>
       </Row>

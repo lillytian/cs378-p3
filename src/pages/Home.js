@@ -6,7 +6,11 @@ import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
 import DrinkInfo from "../components/DrinkInfo";
 
 function Home() {
-  const [drinks, setDrinks] = useState([]);
+  const [drinks, setDrinks] = useState([
+    { name: "Margarita", id: 11007 },
+    { name: "Paloma", id: 17253 },
+    { name: "Pina Colada", id: 17207 },
+  ]);
   const [drinkSearch, setDrinkSearch] = useState("");
   const [currDrinkDisplayed, setCurrDrinkDisplayed] = useState(null);
 
@@ -62,11 +66,18 @@ function Home() {
             name: toBeAdded["strDrink"],
           };
 
-          drinks.push(drink);
-          drinks.sort((a, b) => {
-            return a.name.localeCompare(b.name);
-          });
-          setDrinks([...drinks]);
+          // check that the cocktail doesn't already exist in the dropdown
+          if (drinks.find((elem) => elem.id === drink.id) != null) {
+            alert("You've already added this cocktail.");
+          } else {
+            drinks.push(drink);
+            drinks.sort((a, b) => {
+              return a.name.localeCompare(b.name);
+            });
+            setDrinks([...drinks]);
+          }
+
+          // api could not find the cocktail
         } else {
           alert("Not a valid cocktail.");
         }
