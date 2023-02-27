@@ -62,7 +62,7 @@ function Home() {
         if (drinksData != null && drinksData.length > 0) {
           const toBeAdded = drinksData[0];
           const drink = {
-            id: toBeAdded["idDrink"],
+            id: parseInt(toBeAdded["idDrink"]),
             name: toBeAdded["strDrink"],
           };
 
